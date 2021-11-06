@@ -6,7 +6,29 @@ import sys
 from typing import Union, List, Tuple, Optional
 
 import numpy as np
+import matplotlib.pyplot as plt
 from PIL import Image
+
+
+def rgb_points_scatter(points: np.ndarray):
+    """
+    Represents colors from rgb triples in points on scatter graph.
+
+    :param points: array of a 24-bit RGB triples
+    """
+    x = np.random.rand(1000)
+    fig, ax = plt.subplots()
+
+    for ind, point in enumerate(points):
+        ax.scatter(x + ind, np.random.gamma(1, size=1000), c=[[el / 255 for el in point]])
+
+    ax.set_facecolor('black')
+    ax.set_title('Points colors')
+
+    fig.set_figwidth(8)
+    fig.set_figheight(8)
+
+    plt.show()
 
 
 def pack_rgb(rgb: Union[np.ndarray, Tuple[int], List[int]]) -> np.ndarray:
